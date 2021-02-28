@@ -1,0 +1,52 @@
+hr@kaz.com.bd
+Explain why you like software engineering/ graphics / SQA as a profession. Attach your CV to the email; please name the CV document in the following format: PrimaryLanguage_Years of Experience_Name (e.g. C#_10_Bill Gates.doc, Photoshop_5_Van Gogh.doc)
+
+https://www.revesoft.com/careers#drop-your-resume
+
+CREATE TABLE categories(
+    c_id int NOT NULL PRIMARY KEY,
+    c_name varchar(255)
+    );
+CREATE TABLE sub_categories(
+    sc_id int NOT NULL PRIMARY KEY,
+    sc_name varchar(255),
+    c_id int,
+    FOREIGN KEY(c_id) REFERENCES categories(C_id)
+    );
+CREATE TABLE products(
+    p_id int NOT NULL PRIMARY KEY,
+    p_name varchar(255),
+    sold int,
+    price float,
+    quantity int,
+    description varchar(255)
+    );
+CREATE TABLE product_images(
+    pi_id int NOT NULL,
+    p_id int,
+    FOREIGN KEY(p_id) REFERENCES products(p_id)
+    );
+CREATE TABLE customers(
+    cust_id int NOT NULL PRIMARY KEY,
+    cust_name varchar(255) NOT NULL,
+    cust_email varchar(255) NOT NULL,
+    pnumber int NOT NULL,
+    c_id int,
+    FOREIGN KEY(c_id) REFERENCES categories(c_id)
+    );
+CREATE TABLE admins(
+    a_id int NOT NULL PRIMARY KEY,
+    a_name varchar(255) NOT NULL,
+    a_password varchar(255) NOT NULL,
+    a_email varchar(255) NOT NULL
+    );
+CREATE TABLE orders(
+    o_id int NOT NULL PRIMARY KEY,
+    o_date varchar(255) NOT NULL,
+    totalprice float NOT NULL,
+    p_id int,
+    cust_id int,
+    FOREIGN key(p_id) REFERENCES products(p_id),
+    FOREIGN key(cust_id) REFERENCES customers(cust_id)
+    );
+
